@@ -1,11 +1,13 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from django.core.mail import send_mail
 
 import json
 
 class EmailAPIView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(Self, request):
         request_json = json.loads(request.body.decode('utf-8'))
         #TODO: serialize
